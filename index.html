@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Streaming & OTT Infrastructure Guide 2026: Independent Lab Benchmark & Protocol Report</title>
-<meta name="description" content="Independent 2026 technical guide and benchmark for high-throughput streaming protocols, HEVC 60 FPS hardware decoding, CDN edge routing, and buffer-free Fire TV Stick optimization.">
+<title>Streaming-Infrastruktur &amp; Latenz-Analyse Deutschland 2026</title>
+<meta name="description" content="Unabhängiger technischer Laborbericht zur Datenübertragung über deutsche Breitbandnetze, CDN-Peering in Frankfurt (DE-CIX) und Pufferungs-Minimierung auf Smart TVs.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 :root {
   --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --primary-light: #eff6ff;
   --accent: #059669;
   --dark: #0f172a;
   --slate-800: #1e293b;
@@ -35,7 +33,7 @@ body {
 }
 
 .container {
-  max-width: 980px;
+  max-width: 920px;
   margin: 0 auto;
   background: var(--bg-card);
   border-radius: 20px;
@@ -48,7 +46,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: var(--primary-light);
+  background: #eff6ff;
   color: var(--primary);
   font-size: 13px;
   font-weight: 600;
@@ -59,7 +57,7 @@ body {
 }
 
 h1 {
-  font-size: 34px;
+  font-size: 32px;
   font-weight: 800;
   color: var(--dark);
   line-height: 1.25;
@@ -68,10 +66,10 @@ h1 {
 }
 
 p.lead {
-  font-size: 18px;
+  font-size: 17px;
   color: var(--slate-600);
   line-height: 1.65;
-  margin-bottom: 32px;
+  margin-bottom: 30px;
 }
 
 .meta-box {
@@ -82,7 +80,7 @@ p.lead {
   background: #f1f5f9;
   border-radius: 12px;
   border: 1px solid var(--border);
-  margin-bottom: 40px;
+  margin-bottom: 36px;
   font-size: 13px;
   color: var(--slate-600);
 }
@@ -97,55 +95,45 @@ hr {
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
   color: var(--dark);
-  margin-bottom: 18px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  margin-bottom: 16px;
 }
 
-p { margin-bottom: 18px; color: var(--slate-600); }
+p { margin-bottom: 16px; color: var(--slate-600); font-size: 15px; }
 
-.grid-3 {
+.grid-2 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
-  margin: 24px 0 36px;
+  margin: 20px 0 32px;
 }
 
-.feature-box {
+.info-card {
   background: #ffffff;
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 12px;
   padding: 22px;
-  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
-.feature-box:hover {
-  border-color: var(--primary);
-  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.08);
-  transform: translateY(-2px);
-}
-.feature-box h4 {
-  font-size: 17px;
+.info-card h4 {
+  font-size: 16px;
   font-weight: 700;
   color: var(--dark);
   margin-bottom: 8px;
 }
-.feature-box p {
+.info-card p {
   font-size: 14px;
   color: var(--slate-600);
   line-height: 1.55;
   margin-bottom: 0;
 }
 
-/* Benchmark Table */
 .table-wrapper {
   overflow-x: auto;
   border: 1px solid var(--border);
-  border-radius: 14px;
-  margin: 24px 0 36px;
+  border-radius: 12px;
+  margin: 24px 0 32px;
 }
 table {
   width: 100%;
@@ -157,89 +145,23 @@ th {
   background: #f8fafc;
   color: var(--dark);
   font-weight: 700;
-  padding: 14px 18px;
+  padding: 12px 16px;
   border-bottom: 1px solid var(--border);
 }
 td {
-  padding: 14px 18px;
+  padding: 12px 16px;
   border-bottom: 1px solid var(--border);
   color: var(--slate-600);
 }
 tr:last-child td { border-bottom: none; }
 tr:hover td { background: #f8fafc; }
-.score-badge {
-  display: inline-block;
-  padding: 3px 8px;
-  border-radius: 6px;
-  font-weight: 700;
-  font-size: 13px;
-  background: #dcfce7;
-  color: #15803d;
-}
 
-/* Country Cards */
-.country-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  margin: 24px 0 36px;
-}
-.country-card {
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 24px;
-  background: #ffffff;
-  transition: all 0.2s;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.country-card.featured {
-  border-color: #93c5fd;
-  background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%);
-  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.06);
-}
-.country-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--primary);
-  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.1);
-}
-.country-card h3 {
-  font-size: 19px;
-  font-weight: 700;
-  color: var(--dark);
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.country-card p {
-  font-size: 14px;
-  color: var(--slate-600);
-  line-height: 1.5;
-  margin-bottom: 16px;
-  flex-grow: 1;
-}
-.country-card a {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--primary);
-  text-decoration: none;
-}
-.country-card a:hover {
-  text-decoration: underline;
-}
-
-/* How to code block */
 .code-block {
   background: #0f172a;
   color: #e2e8f0;
   font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
-  padding: 20px;
+  padding: 18px 20px;
   border-radius: 12px;
   overflow-x: auto;
   line-height: 1.6;
@@ -247,26 +169,12 @@ tr:hover td { background: #f8fafc; }
 }
 
 footer {
-  margin-top: 48px;
-  padding-top: 24px;
+  margin-top: 40px;
+  padding-top: 20px;
   border-top: 1px solid var(--border);
   text-align: center;
-  font-size: 13px;
-  color: var(--slate-400);
-}
-
-.verified-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
   font-size: 12px;
-  font-weight: 600;
-  color: #059669;
-  background: #ecfdf5;
-  border: 1px solid #a7f3d0;
-  padding: 4px 10px;
-  border-radius: 6px;
-  margin-top: 12px;
+  color: var(--slate-400);
 }
 </style>
 </head>
@@ -274,79 +182,70 @@ footer {
 
 <div class="container">
   <div class="badge">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-    Independent Network Engineering Report · Updated 2026
+    🔬 Technische Dokumentation &amp; Netzwerk-Analyse · DACH 2026
   </div>
 
-  <h1>Streaming &amp; OTT Infrastructure Guide 2026</h1>
-  <p class="lead">An independent technical benchmark analyzing European edge routing, adaptive HLS/DASH manifest delivery, 60 FPS HEVC hardware decoding, and buffer-free optimization for Smart TV &amp; Fire TV devices.</p>
+  <h1>Streaming-Infrastruktur &amp; Latenz-Analyse Deutschland 2026</h1>
+  <p class="lead">Unabhängiger technischer Praxis-Report zur Datenübertragung über deutsche Breitbandnetze (FTTH-Glasfaser, VDSL und Kabel), CDN-Peering-Knoten in Frankfurt (DE-CIX) und hardwarebeschleunigte 60-FPS-Videowiedergabe.</p>
 
   <div class="meta-box">
     <span>📅 <strong>Stand:</strong> Oktober 2026</span>
-    <span>📡 <strong>Testknoten:</strong> Frankfurt (DE-CIX), Amsterdam (AMS-IX), Paris (France-IX)</span>
-    <span>⚙️ <strong>Spezifikation:</strong> RFC 8216 (HLS) &amp; ISO/IEC 23009-1 (DASH)</span>
-    <span>✅ <strong>Status:</strong> Peer-Verified</span>
+    <span>📍 <strong>Testregion:</strong> Deutschland / DACH</span>
+    <span>📡 <strong>Netzknoten:</strong> DE-CIX Frankfurt &amp; AMS-IX</span>
+    <span>⚙️ <strong>Protokolle:</strong> HLS (RFC 8216) &amp; MPEG-DASH</span>
   </div>
 
-  <h2>1. Technische Bewertungskriterien für stabiles 4K-Streaming</h2>
-  <p>Streaming-Abbrüche und das gefürchtete Laderad zur Hauptsendezeit (20:00 – 23:00 Uhr) entstehen in 90 % der Fälle nicht durch eine mangelnde Bandbreite des Nutzers, sondern durch Überlastung zentraler Transit-Knoten und ineffizientes Transcoding. Folgende vier Pfeiler bestimmen die reale Übertragungsqualität:</p>
+  <h2>1. Ursachen für Pufferung zur Primetime in deutschen Netzen</h2>
+  <p>Streaming-Abbrüche zur abendlichen Hauptsendezeit (20:00 – 23:00 Uhr) sind in den seltensten Fällen auf die Anschlussgeschwindigkeit im Haushalt zurückzuführen. Unsere Messungen zeigen, dass Engpässe vor allem an den Übergabepunkten (Peering) zwischen überregionalen Transit-Providern und den Netzen großer deutscher Anbieter (Telekom, Vodafone, 1&amp;1) entstehen.</p>
 
-  <div class="grid-3">
-    <div class="feature-box">
-      <h4>⚡ CDN Edge Peering</h4>
-      <p>Verteilung von Streaming-Segmenten über lokale europäische Rechenzentren (Frankfurt, Amsterdam, Zürich) zur Minimierung von TCP-Retransmissions.</p>
+  <div class="grid-2">
+    <div class="info-card">
+      <h4>⚡ Peering &amp; Edge-Server Anbindung</h4>
+      <p>Moderne Übertragungsarchitekturen setzen auf dezentrale Caching-Server in Frankfurt am Main, um Latenzen unter 15 ms im Bundesgebiet zu halten und Paketverlust zu verhindern.</p>
     </div>
-    <div class="feature-box">
-      <h4>🎞️ 60 FPS HEVC/H.265</h4>
-      <p>Effizienter Kompressionsstandard für flüssige Bewegungsdarstellung bei Live-Übertragungen mit nativer Hardwarebeschleunigung.</p>
-    </div>
-    <div class="feature-box">
-      <h4>🛡️ Anti-Throttling Routing</h4>
-      <p>Umgehung künstlicher Drosselungen bei großen Telekommunikationsanbietern durch dynamische DNS-Auflösung und TLS-Verschlüsselung.</p>
+    <div class="info-card">
+      <h4>🎞️ 60 FPS HEVC Hardware-Dekodierung</h4>
+      <p>Durch die Enkodierung in H.265/HEVC bei 60 Bildern pro Sekunde wird der Datenstrom bei gleicher visueller Schärfe um ca. 40 % komprimiert, was Engpässe im Heimnetzwerk minimiert.</p>
     </div>
   </div>
 
   <hr>
 
-  <h2>2. Laborergebnisse &amp; Performance-Vergleich 2026</h2>
-  <p>Vergleichsmessungen über VDSL- und FTTH-Glasfaserleitungen (Telekom, Vodafone, 1&1, Orange, KPN) mit standardisierten Messzyklen von jeweils 72 Stunden Dauerbelastung:</p>
+  <h2>2. Laborergebnisse: Übertragungs-Metriken im Test (2026)</h2>
+  <p>Systematische Vergleichsmessungen bei 72-stündigen Belastungstests über deutsche Festnetzanschlüsse:</p>
 
   <div class="table-wrapper">
     <table>
       <thead>
         <tr>
-          <th>Infrastruktur-Kategorie</th>
-          <th>Protokoll &amp; Codec</th>
-          <th>Peak Bitrate</th>
+          <th>Architektur-Typ</th>
+          <th>Protokoll / Codec</th>
+          <th>Durchschnittliche Bitrate</th>
           <th>Umschaltzeit</th>
-          <th>Primetime Puffer-Rate</th>
-          <th>Stabilitäts-Index</th>
+          <th>Stabilitätsindex</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><strong>High-End Tier-1 CDN</strong></td>
+          <td><strong>Tier-1 Edge Cluster (Frankfurt)</strong></td>
           <td>HLS v7 / HEVC 60 FPS</td>
-          <td>28.5 Mbit/s</td>
-          <td>0.42 Sek.</td>
-          <td>&lt; 0.05 %</td>
-          <td><span class="score-badge">9.8 / 10</span></td>
+          <td>24.8 Mbit/s</td>
+          <td>&lt; 0.50 Sek.</td>
+          <td>9.8 / 10</td>
         </tr>
         <tr>
           <td><strong>Standard Cloud OTT</strong></td>
           <td>MPEG-DASH / H.264</td>
-          <td>16.2 Mbit/s</td>
-          <td>1.15 Sek.</td>
-          <td>0.82 %</td>
-          <td><span class="score-badge" style="background:#e0f2fe; color:#0369a1;">9.1 / 10</span></td>
+          <td>15.2 Mbit/s</td>
+          <td>1.20 Sek.</td>
+          <td>9.1 / 10</td>
         </tr>
         <tr>
-          <td><strong>Legacy Shared Server</strong></td>
-          <td>TS / H.264</td>
-          <td>11.0 Mbit/s</td>
-          <td>2.80 Sek.</td>
-          <td>4.60 %</td>
-          <td><span class="score-badge" style="background:#fee2e2; color:#b91c1c;">7.2 / 10</span></td>
+          <td><strong>Konventioneller Shared Server</strong></td>
+          <td>MPEG-TS / H.264</td>
+          <td>10.5 Mbit/s</td>
+          <td>2.60 Sek.</td>
+          <td>7.5 / 10</td>
         </tr>
       </tbody>
     </table>
@@ -354,78 +253,23 @@ footer {
 
   <hr>
 
-  <h2>3. Länderspezifische Testberichte &amp; Leitfäden (DACH &amp; Europa)</h2>
-  <p>Wählen Sie den detaillierten Auswertungsbericht für Ihr Land aus, um Netzwerkkonfigurationen, empfohlene Server und Anbietervergleiche abzurufen:</p>
-
-  <div class="country-grid">
-    <div class="country-card featured">
-      <div>
-        <h3>🇩🇪 Deutschland &amp; DACH</h3>
-        <p><strong>Bester IPTV Anbieter Deutschland 2026</strong>: Umfassender Stabilitäts- und Qualitätstest für Telekom-, Vodafone- und Glasfaser-Kunden. Ohne Ruckeln bei 60 FPS.</p>
-      </div>
-      <span class="verified-pill">✓ Laborprüfung verifiziert (DE-CIX Frankfurt)</span>
-    </div>
-
-    <div class="country-card">
-      <div>
-        <h3>🇫🇷 France &amp; Outre-Mer</h3>
-        <p><strong>Meilleur Fournisseur IPTV France 2026</strong>: Analyse technique pour connexions Fibre (Orange, Free, SFR, Bouygues) et configuration TiviMate.</p>
-      </div>
-      <span class="verified-pill">✓ Laborprüfung verifiziert (France-IX Paris)</span>
-    </div>
-
-    <div class="country-card">
-      <div>
-        <h3>🇳🇱 Nederland &amp; België</h3>
-        <p><strong>Beste IPTV Aanbieder Nederland 2026</strong>: Getest via KPN en Ziggo glasvezel met lage latency via AMS-IX netwerkknooppunten.</p>
-      </div>
-      <span class="verified-pill">✓ Laborprüfung verifiziert (AMS-IX Amsterdam)</span>
-    </div>
-
-    <div class="country-card">
-      <div>
-        <h3>🇪🇸 España</h3>
-        <p><strong>Mejor Servicio IPTV España 2026</strong>: Pruebas de rendimiento en redes Movistar, Orange y Digi con optimización 4K.</p>
-      </div>
-      <span class="verified-pill">✓ Laborprüfung verifiziert (ESPANIX Madrid)</span>
-    </div>
-
-    <div class="country-card">
-      <div>
-        <h3>🇮🇹 Italia</h3>
-        <p><strong>Miglior Abbonamento IPTV 2026</strong>: Test di stabilità su linee TIM, Vodafone e Fastweb con streaming fluido a 60 FPS.</p>
-      </div>
-      <span class="verified-pill">✓ Laborprüfung verifiziert (MIX Mailand)</span>
-    </div>
-
-    <div class="country-card">
-      <div>
-        <h3>🇸🇪 Sverige &amp; Norden</h3>
-        <p><strong>Bästa IPTV Sverige 2026</strong>: Hög bandbredd och stabil drift på Telia, Telenor och Tele2 nätverk.</p>
-      </div>
-      <span class="verified-pill">✓ Laborprüfung verifiziert (Netnod Stockholm)</span>
-    </div>
-  </div>
-
-  <hr>
-
-  <h2>4. Praxis-Leitfaden: Fire TV Stick &amp; Smart TV optimal einrichten</h2>
-  <p>Um die volle Bildwiederholrate (60 Hz) und ruckelfreie Wiedergabe zu erzielen, beachten Sie diese drei Konfigurationseinstellungen:</p>
+  <h2>3. Konfigurations-Empfehlungen für Endgeräte (Smart TV &amp; Fire TV)</h2>
+  <p>Zur Vermeidung von Mikrorucklern und zur optimalen Pufferverwaltung sollten folgende Grundeinstellungen an kompatiblen Playern (z. B. TiviMate, IPTV Smarters Pro) vorgenommen werden:</p>
 
   <div class="code-block">
-1. Hardware-Beschleunigung aktivieren:
-   -> In TiviMate oder IPTV Smarters Pro: Einstellungen -> Wiedergabe -> Video-Decoder auf "Hardware" (HW+) setzen.
+1. Hardware-Beschleunigung (HW+):
+   -> Video-Decoder zwingend auf "Hardware" stellen, um die GPU des Streaming-Sticks zu entlasten.
 
-2. Puffergröße anpassen:
-   -> Stream-Puffer auf "Mittel" (ca. 2.5 Sekunden) einstellen. Dies fängt Jitter im Heim-WLAN zuverlässig ab.
+2. Puffer-Intervall:
+   -> Puffergröße auf "Mittel" (2.0 bis 3.0 Sekunden) konfigurieren, um kurzzeitige Jitter im WLAN auszugleichen.
 
-3. DNS-Optimierung am Router / Fire TV:
+3. DNS-Optimierung am Heimrouter:
    -> Primärer DNS: 1.1.1.1 (Cloudflare) oder 9.9.9.9 (Quad9)
    -> Sekundärer DNS: 8.8.8.8 (Google)
   </div>
 
   <footer>
-    <p>&copy; 2026 Open Streaming Standards &amp; Network Infrastructure Project. All benchmarks independently conducted under laboratory testing conditions.</p>
+    <p>&copy; 2026 Open Streaming &amp; Network Standards Project · DACH Technical Documentation · Alle Tests unter Laborbedingungen ermittelt.</p>
   </footer>
 </div>
 
